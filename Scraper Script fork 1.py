@@ -7,26 +7,14 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = 'https://www.monster.com/jobs/search/?q=Python-Developer&where=Los-Angeles'
-#main get request
+URL = 'https://www.monster.com/jobs/search/?q=Software-Developer&where=Australia'
 page = requests.get(URL)
 
 soup = BeautifulSoup(page.content, 'html.parser')
 results = soup.find(id="ResultsContainer")
 
 job_elems = results.find_all('section', class_='card-content')
-python_jobs = results.find_all('h2',
-                               string=lambda text: 'python' in text.lower())
-#status or request
-response = requests.get(URL)
-if response.status_code == 200:
-    print('Success')
-    print()
-elif response.status_code == 404:
-    print()
-    
-print(str(len(python_jobs)) + " Python Developer Listings found.")
-print()
+python_jobs = results.find_all('h2', string='Python Developer')
 for job_elem in job_elems:
     # Each job_elem is a new BeautifulSoup object.
     # You can use the same methods on it as you did before.

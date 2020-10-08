@@ -23,6 +23,7 @@ if response.status_code == 200:
     print('Success')
     print()
 elif response.status_code == 404:
+    print('Error 404 - Not Found')
     print()
     
 print(str(len(python_jobs)) + " Python Developer Listings found.")

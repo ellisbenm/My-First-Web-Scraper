@@ -1,4 +1,6 @@
 #First time web scrapin, kinda nervous
+#following the tutorial on realpython.com
+#https://realpython.com/beautiful-soup-web-scraper-python/#what-is-web-scraping
 
 # test url:  https://www.monster.com/jobs/search/?q=Software-Developer&where=Australia
 
@@ -19,7 +21,14 @@ for job_elem in job_elems:
     title_elem = job_elem.find('h2', class_='title')
     company_elem = job_elem.find('div', class_='company')
     location_elem = job_elem.find('div', class_='location')
-    print(title_elem)
-    print(company_elem)
-    print(location_elem)
+    if None in (title_elem, company_elem, location_elem):
+        print()
+        print(":: ERROR ::")
+        print(title_elem, company_elem, location_elem)
+        print()
+        print()
+        continue
+    print(title_elem.text.strip())
+    print(company_elem.text.strip())
+    print(location_elem.text.strip())
     print()
